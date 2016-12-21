@@ -2,7 +2,8 @@ import Express from "express";
 import React from "react";
 import { renderToString } from "react-dom/server";
 import { match, RouterContext } from "react-router";
-import routes from "./src/routes";
+import createHtml from "./createHtml";
+import routes from "./routes";
 
 const app = Express();
 
@@ -15,7 +16,10 @@ app.use((req, res) => {
       } else if (redirectLocation) {
         res.redirect(302, redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
-        res.status(200).send(renderToString(<RouterContext {...renderProps}/>));
+        const html = createHtml(
+          renderToString(<RouterContext {...renderProps}/>)
+        );
+        res.status(200).send(html);
       } else {
         res.status(404).send("Not found");
       }
