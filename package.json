@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "test"
+    "build:dev": "webpack"
   },
   "author": "Stefan Huynh",
   "license": "ISC",
@@ -18,5 +18,10 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-router": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.20.0",
+    "webpack": "^1.14.0"
   }
 }

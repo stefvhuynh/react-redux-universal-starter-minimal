@@ -1,3 +1,4 @@
+import path from "path";
 import Express from "express";
 import React from "react";
 import { renderToString } from "react-dom/server";
@@ -7,9 +8,11 @@ import routes from "./routes";
 
 const app = Express();
 
-app.use((req, res) => {
+app.use(Express.static(path.join(__dirname, "..", "public")));
+
+app.use("*", (req, res) => {
   match(
-    { location: req.url, routes },
+    { location: req.originalUrl, routes },
     (error, redirectLocation, renderProps) => {
       if (error) {
         res.status(500).send(error.message);

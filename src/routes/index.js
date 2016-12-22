@@ -1,10 +1,12 @@
 import React from "react";
-import { Route } from "react-router";
+import { Link, Route } from "react-router";
 
 const Root = ({ children }) => {
   return (
     <div>
       <h1>hello from react</h1>
+      <Link to="about">To about</Link>
+      <Link to="info">To info</Link>
       {children}
     </div>
   );

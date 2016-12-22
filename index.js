@@ -1,2 +1,7 @@
-require("babel-register")({ presets: ["es2015", "stage-0", "react"] });
+var fs = require("fs");
+
+var babelrc = fs.readFileSync("./.babelrc");
+var config = JSON.parse(babelrc);
+
+require("babel-register")(config);
 require("./src/server");
