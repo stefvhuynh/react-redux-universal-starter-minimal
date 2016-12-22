@@ -8,6 +8,7 @@ import { syncHistoryWithStore } from "react-router-redux";
 import createHtml from "./createHtml";
 import routes from "./routes";
 import createStore from "./redux/createStore";
+import { addTodo } from "./redux/modules/todos";
 
 const app = Express();
 
@@ -16,6 +17,7 @@ app.use(Express.static(path.join(__dirname, "..", "public")));
 app.use("*", (req, res) => {
   const memoryHistory = createMemoryHistory(req.originalUrl);
   const store = createStore(memoryHistory);
+  store.dispatch(addTodo("added on server"));
   const history = syncHistoryWithStore(memoryHistory, store);
 
   match(
@@ -29,7 +31,7 @@ app.use("*", (req, res) => {
         const component = (
           <Provider store={store}><RouterContext {...renderProps}/></Provider>
         );
-        const html = createHtml(renderToString(component));
+        const html = createHtml(renderToString(component), store.getState());
         res.status(200).send(html);
       } else {
         res.status(404).send("Not found");

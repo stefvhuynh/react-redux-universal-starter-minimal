@@ -53,7 +53,7 @@ class TodoList extends Component {
             <input
               type="checkbox"
               checked={todo.completed ? true : false}
-              onClick={this.handleToggleTodo.bind(null, index)}
+              onChange={this.handleToggleTodo.bind(null, index)}
             />
           </div>
         </li>

@@ -7,7 +7,7 @@ import createStore from "./redux/createStore";
 import routes from "./routes";
 
 const root = document.getElementById("content");
-const store = createStore(browserHistory);
+const store = createStore(browserHistory, window.__INITIAL_STATE__);
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(

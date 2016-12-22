@@ -1,31 +1,31 @@
-import { List, Map } from "immutable";
+import { createSelector } from "reselect";
 
 const ADD_TODO = "TODOS/ADD_TODO";
 const TOGGLE_TODO = "TODOS/TOGGLE_TODO";
-const REMOVE_TODO = "TODOS/REMOVE_TODO";
 
-const initialState = Map({
-  todos: List()
-});
+const initialState = {
+  todos: []
+};
 
 const reducer = (state = initialState, action = {}) => {
   const { payload, type } = action;
   switch (action.type) {
     case ADD_TODO:
-      return state.update(
-        "todos",
-        (todos) => todos.push(Map({
+      return {
+        ...state,
+        todos: state.todos.concat({
           description: payload.description,
           completed: false
-        }))
-      );
+        })
+      };
     case TOGGLE_TODO:
-      return state.updateIn(
-        ["todos", payload.index, "completed"],
-        (completed) => !completed
-      );
-    case REMOVE_TODO:
-      return state.update("todos", (todos) => todos.delete(payload.index));
+      return {
+        ...state,
+        todos: state.todos.map((todo, index) => {
+          return index === payload.index ?
+            { ...todo, completed: !todo.completed } : todo;
+        })
+      };
     default:
       return state;
   }
@@ -41,9 +41,9 @@ export const toggleTodo = (index) => ({
   type: TOGGLE_TODO,
   payload: { index }
 });
-export const removeTodo = (index) => ({
-  type: REMOVE_TODO,
-  payload: { index }
-});
 
-export const getTodos = (state) => state.todos.get("todos").toJS();
+export const getTodos = (state) => state.todos.todos;
+export const getCompletedTodos = createSelector(
+  getTodos,
+  (todos) => todos.filter((todo) => todo.completed)
+);

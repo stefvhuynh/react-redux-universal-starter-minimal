@@ -18,6 +18,7 @@ const Root = ({ children, links, onLinkClick }) => {
     <div>
       <h1>Root Page</h1>
       {anchors}
+      <br/>
       {children}
     </div>
   );

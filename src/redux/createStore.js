@@ -9,7 +9,7 @@ import {
 } from "react-router-redux";
 import todos from "./modules/todos";
 
-const createStore = (history) => {
+const createStore = (history, initialState) => {
   const routerMiddleware = createRouterMiddleware(history);
 
   const middlewares = applyMiddleware(
@@ -21,7 +21,7 @@ const createStore = (history) => {
     ...todos
   });
 
-  return createReduxStore(rootReducer, middlewares);
+  return createReduxStore(rootReducer, initialState, middlewares);
 };
 
 export default createStore;
