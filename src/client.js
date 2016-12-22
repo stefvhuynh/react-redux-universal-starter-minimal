@@ -5,9 +5,4 @@ import routes from "./routes";
 
 const root = document.getElementById("content");
 
-match(
-  { history: browserHistory, routes },
-  (error, redirectLocation, renderProps) => {
-    render(<Router {...renderProps}/>, root);
-  }
-);
+render(<Router history={browserHistory}>{routes}</Router>, root);
