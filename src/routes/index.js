@@ -1,11 +1,11 @@
 import React from "react";
 import { Route } from "react-router";
-import { About, Root, Todos } from "../pages";
+import { AboutPage, RootPage, TodosPage } from "../pages";
 
 const routes = (
-  <Route path="/" component={Root}>
-    <Route path="about" component={About}/>
-    <Route path="todos" component={Todos}/>
+  <Route path="/" component={RootPage}>
+    <Route path="about" component={AboutPage}/>
+    <Route path="todos" component={TodosPage}/>
   </Route>
 );
 

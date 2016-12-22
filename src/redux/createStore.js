@@ -7,6 +7,7 @@ import {
   routerMiddleware as createRouterMiddleware,
   routerReducer
 } from "react-router-redux";
+import todos from "./modules/todos";
 
 const createStore = (history) => {
   const routerMiddleware = createRouterMiddleware(history);
@@ -16,7 +17,8 @@ const createStore = (history) => {
   );
 
   const rootReducer = combineReducers({
-    routing: routerReducer
+    routing: routerReducer,
+    ...todos
   });
 
   return createReduxStore(rootReducer, middlewares);
