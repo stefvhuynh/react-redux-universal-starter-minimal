@@ -5,14 +5,14 @@ import { renderToString } from "react-dom/server";
 import { createMemoryHistory, match, RouterContext } from "react-router";
 import { Provider } from "react-redux";
 import { syncHistoryWithStore } from "react-router-redux";
-import createHtml from "./createHtml";
+import createHtml from "./create-html";
 import routes from "./routes";
 import createStore from "./redux/createStore";
 import { addTodo } from "./redux/modules/todos";
 
 const app = Express();
 
-app.use(Express.static(path.join(__dirname, "..", "public")));
+app.use("/public", Express.static(path.join(__dirname, "..", "public")));
 
 app.use("*", (req, res) => {
   const memoryHistory = createMemoryHistory(req.originalUrl);
@@ -55,6 +55,8 @@ app.use("*", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("Listening on port 3000...");
+app.set("port", process.env.PORT || 3000);
+
+app.listen(app.get("port"), () => {
+  console.log(`Listening on port ${app.get("port")}...`);
 });
