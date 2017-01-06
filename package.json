@@ -1,5 +1,5 @@
 {
-  "name": "react-redux-universal-starter",
+  "name": "react-redux-universal-starter-minimal",
   "version": "1.0.0",
   "description": "Starter kit for react, redux, and server-side rendering",
   "main": "index.js",
