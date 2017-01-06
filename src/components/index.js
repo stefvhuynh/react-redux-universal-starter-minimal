@@ -1,1 +1,1 @@
-export { default as TodoList } from "./todo-list";
+export TodoList from "./todo-list";

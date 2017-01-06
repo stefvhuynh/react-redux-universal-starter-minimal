@@ -1,1 +1,1 @@
-export { default as TodosContainer } from "./todos-container";
+export TodosContainer from "./todos-container";

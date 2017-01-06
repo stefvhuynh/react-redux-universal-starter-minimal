@@ -1,3 +1,3 @@
-export { default as AboutPage } from "./about-page";
-export { default as RootPage } from "./root-page";
-export { default as TodosPage } from "./todos-page";
+export AboutPage from "./about-page";
+export RootPage from "./root-page";
+export TodosPage from "./todos-page";

@@ -1,13 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
 import { TodosContainer } from "../containers";
 
-const TodosPage = () => {
-  return (
-    <div>
-      <h3>Todos Page</h3>
-      <TodosContainer/>
-    </div>
-  );
-};
-
-export default TodosPage;
+export default class TodosPage extends Component {
+  render() {
+    return (
+      <div>
+        <h3>Todos Page</h3>
+        <TodosContainer/>
+      </div>
+    );
+  }
+}
